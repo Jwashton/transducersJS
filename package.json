@@ -1,0 +1,30 @@
+{
+  "name": "transducersJS",
+  "version": "1.0.0",
+  "description": "transducersJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jwashton/transducersJS.git"
+  },
+  "keywords": [],
+  "author": "William Ashton <William@AshtonFam.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jwashton/transducersJS/issues"
+  },
+  "homepage": "https://github.com/Jwashton/transducersJS#readme",
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "eslint": "^3.4.0",
+    "eslint-watch": "^2.1.14"
+  },
+  "ava": {
+    "files": "test/**/*.js",
+    "source": "src/**/*.js",
+    "require": "babel-register"
+  }
+}
