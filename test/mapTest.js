@@ -22,12 +22,12 @@ const source = [1, 2, 3, 4];
 const step = (r, x) => [...r, x];
 
 const even = n => n % 2 === 0;
-const change = n => n * 2;
+const double = n => n * 2;
 const mapping = (f, col) => reduce(map(f)(step), [], col);
 const filtering = (f, col) => reduce(filter(f)(step), [], col);
 
 test('custom map works like built-in map', t => {
-  t.true(equal(map(change, source), source.map(change)));
+  t.true(equal(map(double, source), source.map(double)));
 });
 
 test('custom map passed one function returns a function', t => {
@@ -35,7 +35,7 @@ test('custom map passed one function returns a function', t => {
 });
 
 test('mapping can be applied to an array', t => {
-  t.true(equal(mapping(change, source), [2, 4, 6, 8]));
+  t.true(equal(mapping(double, source), [2, 4, 6, 8]));
 });
 
 test('can filter an array', t => {
@@ -43,7 +43,7 @@ test('can filter an array', t => {
 });
 
 test('can compose transducers', t => {
-  const process = comp(map(change), filter(even));
+  const process = comp(map(double), filter(even));
 
   const processing = col => reduce(process(step), [], col);
 
@@ -55,7 +55,7 @@ test('can work on sets', t => {
 
   const next = (r, x) => new Set([...r.values(), x]);
 
-  const processing = col => reduce(map(change)(next), new Set(), col);
+  const processing = col => reduce(map(double)(next), new Set(), col);
 
   t.true(equal(processing(set), [2, 4, 6, 8]));
 });
