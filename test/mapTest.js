@@ -26,10 +26,6 @@ const double = n => n * 2;
 const mapping = (f, col) => reduce(map(f)(step), [], col);
 const filtering = (f, col) => reduce(filter(f)(step), [], col);
 
-test('custom map works like built-in map', t => {
-  t.true(equal(map(double, source), source.map(double)));
-});
-
 test('custom map passed one function returns a function', t => {
   t.is(typeof map(() => undefined), 'function');
 });
