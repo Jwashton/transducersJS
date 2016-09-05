@@ -250,7 +250,7 @@ const style = {
     }
   }],
   'keyword-spacing':               warn,
-  'linebreak-style':             [ warn, 'unix' ],
+  'linebreak-style':               off, // [ warn, 'unix' ],
   'lines-around-comment':        [ warn, {
     beforeBlockComment: true,
     beforeLineComment: true
