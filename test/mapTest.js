@@ -70,7 +70,7 @@ test('comp can handle multiple args', t => {
 });
 
 test('can process a custom iterator', t => {
-  const process = comp(filter(even, map(double)));
+  const process = comp(filter(even), map(double));
 
   const generator = (function *generator() {
     yield* [1, 2, 3, 4];
@@ -78,5 +78,5 @@ test('can process a custom iterator', t => {
 
   const processing = col => reduce(process(step), [], col);
 
-  t.true(equal(processing(generator), [2, 4, 6, 8]));
+  t.true(equal(processing(generator), [4, 8]));
 });
