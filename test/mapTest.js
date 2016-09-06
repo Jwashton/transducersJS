@@ -68,3 +68,15 @@ test('comp can handle multiple args', t => {
   t.is(comp(String, add)(12, 5), '17');
   t.is(typeof comp(String, add)(12, 5), 'string');
 });
+
+test('can process a custom iterator', t => {
+  const process = comp(filter(even, map(double)));
+
+  const generator = (function *generator() {
+    yield* [1, 2, 3, 4];
+  })();
+
+  const processing = col => reduce(process(step), [], col);
+
+  t.true(equal(processing(generator), [2, 4, 6, 8]));
+});

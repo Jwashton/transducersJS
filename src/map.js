@@ -3,12 +3,15 @@
  *
  * The reducing function is passed acc, n
  */
-export const reduce = (f, i, c) => {
-  let acc = i;
+export const reduce = (f, init, c) => {
+  const iter = c[Symbol.iterator]();
+  let step = iter.next();
+  let acc = init;
 
-  c.forEach(n => {
-    acc = f(acc, n);
-  });
+  while (!step.done) {
+    acc = f(acc, step.value);
+    step = iter.next();
+  }
 
   return acc;
 };
