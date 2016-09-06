@@ -4,7 +4,9 @@
   "description": "transducersJS",
   "main": "index.js",
   "scripts": {
-    "test": "ava"
+    "test": "ava",
+    "lint": "eslint src/ test/",
+    "lint:watch": "esw --watch --color src/ test"
   },
   "repository": {
     "type": "git",
