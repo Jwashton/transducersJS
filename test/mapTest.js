@@ -39,7 +39,7 @@ test('can filter an array', t => {
 });
 
 test('can compose transducers', t => {
-  const process = comp(map(double), filter(even));
+  const process = comp(filter(even), map(double));
 
   const processing = col => reduce(process(step), [], col);
 
@@ -54,4 +54,17 @@ test('can work on sets', t => {
   const processing = col => reduce(map(double)(next), new Set(), col);
 
   t.true(equal(processing(set), [2, 4, 6, 8]));
+});
+
+test('comp will compose two functions', t => {
+  const neg = n => -n;
+
+  t.is(comp(double, neg)(12), -24);
+});
+
+test('comp can handle multiple args', t => {
+  const add = (...n) => n.reduce((acc, x) => acc + x, 0);
+
+  t.is(comp(String, add)(12, 5), '17');
+  t.is(typeof comp(String, add)(12, 5), 'string');
 });

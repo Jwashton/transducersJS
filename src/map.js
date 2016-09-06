@@ -33,12 +33,14 @@ export const filter = function filter(pred) {
 
 /*
  * Compose, takes a variable number of functions and returns a function that
- * takes a single argument and passes it to the composition of the original
- * functions.
+ * takes a variable number of arguments and passes them to the composition of
+ * the original functions.
  */
 export const comp = function comp(...funcs) {
-  return arg => {
-    return reduce((stack, f) => f(stack), arg, funcs);
+  const first = funcs.pop();
+
+  return (...args) => {
+    return reduce((stack, f) => f(stack), first(...args), funcs);
   };
 };
 
